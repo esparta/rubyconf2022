@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  base: &base
+    build:
+      context: .
+      dockerfile: ./.dockerdev/Dockerfile
+      args:
+        RUBY_VERSION: '3.2-rc'
+    image: rc2022:0.0.1
+    tmpfs:
+      - /tmp
+
+  backend: &backend
+    <<: *base
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app:cached
+      - bundle:/usr/local/bundle
+
+volumes:
+  bundle:
