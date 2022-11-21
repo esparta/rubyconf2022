@@ -23,7 +23,7 @@ RSpec.describe Business::Schemas::BaseModel do
   end
 
   context 'Invalid schemas' do
-    context 'not a uuid' do
+    context 'not a valid UUIDv4' do
       let(:uuid) { SecureRandom.hex }
 
       it do
