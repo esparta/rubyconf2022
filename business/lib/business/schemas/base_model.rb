@@ -11,10 +11,8 @@ module Business
     # model will be based on.
     # As part of our business convention we decide that all our
     # persisted info will have an ID structured as a UUID v4.
-    class BaseModel < Dry::Schema::Params
-      define do
-        required(:id).filled(:uuid_v4?)
-      end
+    BaseModel = Dry::Schema.Params do
+      required(:id).filled(:uuid_v4?)
     end
   end
 end
