@@ -2,8 +2,9 @@
 
 source 'https://rubygems.org'
 
+gemspec
+
 gem 'business', path: '../business'
-gem 'hanami-api'
 gem 'rake', '~> 13.0'
 gem 'rubocop', '~> 1.39', require: false
 gem 'webrick'

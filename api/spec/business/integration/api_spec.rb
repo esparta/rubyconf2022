@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rack/test'
-require 'spec_helper'
-require_relative '../../../business/api'
 
 OUTER_APP = Rack::Builder.parse_file('config.ru').first
 
