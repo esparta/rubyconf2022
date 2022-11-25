@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'business', path: '../business'
+gem 'business-api', path: '../api'
+gem 'rackup'
+gem 'rake', '~> 13.0'
+gem 'roda', '~> 3.62'
+gem 'webrick'
+
+group :test do
+  gem 'guard-rspec'
+  gem 'rack-test'
+  gem 'rspec', '~> 3.12'
+  gem 'rubocop', '~> 1.39', require: false
+  gem 'rubocop-rspec', require: false
+end
