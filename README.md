@@ -12,14 +12,17 @@ Context
 In order to make a close-to-real-life situation we will simulate a
 new app having multiple _services_. Some of some these services would
 have some parameters & payloads we will apply some basic enforcement
-based on schemas (using Dry::Schema) or a contract (Dry::Validation).
+based on schemas (using `Dry::Schema`) or a contract (`Dry::Validation`).
 
 Structure
 -------
 
-- business: This is place where we will host the most basic schemas & contracts
+- **business**: This is place where we will host the most basic schemas & contracts
             via a gem, this gem will be used by the _services_ and extended by
             them if needed.
+
+- **api**: We will expose a Web API with a minimal set of endpoints which will
+           be using the schemas & contracts exposed on **business** gem.
 
 Installation
 -------
