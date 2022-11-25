@@ -11,6 +11,18 @@ Style/StringLiteralsInInterpolation:
 Style/TrailingCommaInArrayLiteral:
   Enabled: false
 
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Naming/ClassAndModuleCamelCase:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'spec/**/*.rb'
+
 Layout/LineLength:
   Max: 120
 
