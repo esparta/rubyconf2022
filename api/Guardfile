@@ -20,10 +20,12 @@ guard :rspec, cmd: 'bundle exec rspec --format doc' do
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 
-  watch(%r{^business/(.+)\.rb$}) do |file|
+  # Custom Guard: execute their unit and integration spec
+  watch(ruby.lib_files) do |library|
+    root, *rest = library[1].split('/')[1..]
     [
-      "#{File.join('spec', 'business', 'unit', file[1])}_spec.rb",
-      "#{File.join('spec', 'business', 'integration', file[1])}_spec.rb",
+      "#{File.join('spec', root, 'unit', rest)}_spec.rb",
+      "#{File.join('spec', root, 'integration', rest)}_spec.rb",
     ]
   end
 end

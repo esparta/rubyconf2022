@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-require_relative '../../../business/api'
-
 RSpec.describe Business::Api do
   subject(:api) do
     described_class.new.call(request)

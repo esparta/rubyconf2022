@@ -5,6 +5,14 @@ PATH
       dry-monads (~> 1.3)
       dry-schema (~> 1.10)
 
+PATH
+  remote: .
+  specs:
+    business-api (0.0.1)
+      dry-monads (~> 1.3)
+      dry-schema (~> 1.10)
+      hanami-api
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -136,8 +144,8 @@ PLATFORMS
 
 DEPENDENCIES
   business!
+  business-api!
   guard-rspec
-  hanami-api
   rack-test
   rake (~> 13.0)
   rspec (~> 3.12)
