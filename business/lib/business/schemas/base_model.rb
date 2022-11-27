@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 require 'dry/schema'
-require 'dry/monads'
-
-Dry::Schema.load_extensions(:monads)
 
 module Business
   module Schemas
