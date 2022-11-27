@@ -1,46 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'shared_for_availability_schemas'
+
 RSpec.describe Business::Schemas::AvailabilityCalendar do
   subject(:availability) { described_class.(input) }
 
-  context 'when input is invalid (Failure) because units is not an array' do
-    let(:product_id) { SecureRandom.uuid }
-    let(:option_id) { SecureRandom.alphanumeric }
-    let(:local_date_start) { '2022-11-29' }
-    let(:local_date_end) { '2022-12-01' }
-    let(:local_date_start_as_date) { Date.parse(local_date_start) }
-    let(:local_date_end_as_date) { Date.parse(local_date_end) }
-    let(:units) do
-      { 'id' => 'AABB', 'quantity' => 1 }
-    end
-    let(:input) do
-      {
-        'productId' => product_id,
-        'optionId' => option_id,
-        'localDateStart' => local_date_start,
-        'localDateEnd' => local_date_end,
-        'units' => units
-      }
-    end
-
-    it { expect(availability).to be_failure }
-
-    it do
-      expect(availability.errors.to_h).to match(units: ['must be an array'])
-    end
-
-    it do
-      expect(
-        availability.output
-      ).to match(
-        productId: product_id,
-        optionId: option_id,
-        localDateStart: local_date_start_as_date,
-        localDateEnd: local_date_end_as_date,
-        units: { 'id' => 'AABB', 'quantity' => 1 }
-      )
-    end
-  end
+  it_behaves_like 'an availability schema with units', 'Business::Schemas::AvailabilityCheck'
 
   context 'when input is invalid (Failure)' do
     let(:input) do
@@ -85,19 +50,16 @@ RSpec.describe Business::Schemas::AvailabilityCalendar do
       }
     end
 
-    it { expect(availability).to be_success }
-    it { expect(availability.errors.to_h).to be_empty }
-
-    it do
-      expect(
-        availability.output
-      ).to match(
+    let(:output) do
+      {
         productId: product_id,
         optionId: option_id,
         localDateStart: local_date_start_as_date,
         localDateEnd: local_date_end_as_date,
         units: [{ id: unit_id, quantity: 1 }]
-      )
+      }
     end
+
+    it_behaves_like 'an availability result with expected output'
   end
 end
