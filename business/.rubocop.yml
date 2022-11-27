@@ -1,1 +1,7 @@
 inherit_from: ../.rubocop.yml
+
+Naming/VariableName:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
