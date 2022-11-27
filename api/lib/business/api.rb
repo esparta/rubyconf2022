@@ -12,7 +12,7 @@ module Business
 
     scope :v1 do
       get 'products/:id' do
-        result = Business::Schemas::BaseModel.(params.slice(:id))
+        result = Business::Schemas::Product.(params.slice(:id))
         case result.to_monad
         in Success(id:)
           json(id: id)
