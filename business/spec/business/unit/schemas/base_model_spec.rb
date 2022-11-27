@@ -7,13 +7,13 @@ RSpec.describe Business::Schemas::BaseModel do
 
   let(:result) { subject.call(payload) }
 
-  context 'Valid Schema' do
+  context 'when having a Valid Schema' do
     let(:uuid) { SecureRandom.uuid }
 
     it { expect(result).to be_success }
     it { expect(result.to_h).to match(id: uuid) }
 
-    context 'as monad' do
+    context 'when used as monad' do
       it do
         monad = result.to_monad
         expect(monad).to be_a Dry::Monads::Result
@@ -22,8 +22,8 @@ RSpec.describe Business::Schemas::BaseModel do
     end
   end
 
-  context 'Invalid schemas' do
-    context 'not a valid UUIDv4' do
+  context 'when having an Invalid schemas' do
+    context 'when id is not a valid UUIDv4' do
       let(:uuid) { SecureRandom.hex }
 
       it do
@@ -32,7 +32,7 @@ RSpec.describe Business::Schemas::BaseModel do
       end
     end
 
-    context 'empty id' do
+    context 'when id is empty' do
       let(:uuid) { '' }
 
       it do
@@ -41,7 +41,7 @@ RSpec.describe Business::Schemas::BaseModel do
       end
     end
 
-    context 'no payload' do
+    context 'when having an empty payload' do
       let(:payload) do
         {}
       end
