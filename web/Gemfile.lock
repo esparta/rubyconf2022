@@ -1,7 +1,7 @@
 PATH
   remote: ../api
   specs:
-    business-api (0.0.1)
+    business-api (0.1.0)
       dry-monads (~> 1.3)
       dry-schema (~> 1.10)
       hanami-api (~> 0.2.0)
@@ -9,9 +9,9 @@ PATH
 PATH
   remote: ../business
   specs:
-    business (0.1.0)
+    business (0.2.0)
       dry-monads (~> 1.3)
-      dry-schema (~> 1.10)
+      dry-schema (~> 1.13)
 
 GEM
   remote: https://rubygems.org/
