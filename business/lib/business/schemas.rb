@@ -8,3 +8,4 @@ module Business
 end
 
 require_relative 'schemas/base_model'
+require_relative 'schemas/product'
