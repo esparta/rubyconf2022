@@ -15,7 +15,7 @@ RSpec.describe Business::Schemas::Units do
     it { expect(units).to be_failure }
 
     it do
-      expect(units.to_h).to match(id: uuid, quantity: quantity)
+      expect(units.output).to match(id: uuid, quantity: quantity)
     end
 
     it do
@@ -31,7 +31,7 @@ RSpec.describe Business::Schemas::Units do
     it { expect(units).to be_failure }
 
     it do
-      expect(units.to_h).to match(id: uuid, quantity: quantity)
+      expect(units.output).to match(id: uuid, quantity: quantity)
     end
 
     it do
@@ -46,7 +46,7 @@ RSpec.describe Business::Schemas::Units do
     end
 
     it { expect(units).to be_failure }
-    it { expect(units.to_h).to match(quantity: quantity) }
+    it { expect(units.output).to match(quantity: quantity) }
     it { expect(units.errors.to_h).to match(id: ['is missing']) }
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Business::Schemas::Units do
     end
 
     it { expect(units).to be_failure }
-    it { expect(units.to_h).to match(id: uuid) }
+    it { expect(units.output).to match(id: uuid) }
     it { expect(units.errors.to_h).to match(quantity: ['is missing']) }
   end
 
@@ -67,7 +67,7 @@ RSpec.describe Business::Schemas::Units do
     it { expect(units.errors.to_h).to be_empty }
 
     it do
-      expect(units.to_h).to match(id: uuid, quantity: quantity)
+      expect(units.output).to match(id: uuid, quantity: quantity)
     end
   end
 end

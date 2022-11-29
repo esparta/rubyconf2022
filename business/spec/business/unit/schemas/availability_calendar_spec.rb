@@ -31,7 +31,7 @@ RSpec.describe Business::Schemas::AvailabilityCalendar do
 
     it do
       expect(
-        availability.to_h
+        availability.output
       ).to match(
         productId: product_id,
         optionId: option_id,
@@ -48,7 +48,7 @@ RSpec.describe Business::Schemas::AvailabilityCalendar do
     end
 
     it { expect(availability).to be_failure }
-    it { expect(availability.to_h).to eq({}) }
+    it { expect(availability.output).to eq({}) }
 
     it do
       expect(
@@ -90,7 +90,7 @@ RSpec.describe Business::Schemas::AvailabilityCalendar do
 
     it do
       expect(
-        availability.to_h
+        availability.output
       ).to match(
         productId: product_id,
         optionId: option_id,

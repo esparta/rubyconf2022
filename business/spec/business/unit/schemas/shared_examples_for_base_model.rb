@@ -14,7 +14,7 @@ RSpec.shared_examples 'an schema based on BaseModel' do |class_name|
       let(:uuid) { SecureRandom.uuid }
 
       it { expect(result).to be_success }
-      it { expect(result.to_h).to match(id: uuid) }
+      it { expect(result.output).to match(id: uuid) }
       it { expect(result.errors.to_h).to be_empty }
 
       context 'with extra keys, they will be ignored' do
@@ -26,7 +26,7 @@ RSpec.shared_examples 'an schema based on BaseModel' do |class_name|
         end
 
         it { expect(result).to be_success }
-        it { expect(result.to_h).to match(id: uuid) }
+        it { expect(result.output).to match(id: uuid) }
         it { expect(result.errors.to_h).to be_empty }
       end
 
@@ -46,8 +46,8 @@ RSpec.shared_examples 'an schema based on BaseModel' do |class_name|
         it { expect(result).to be_failure }
         it { expect(result.errors.to_h).to match(id: ['is not a valid UUID']) }
         # Dear maintainer, this is the expected behavior, it always was.
-        it { expect(result.to_h).to match(id: uuid) }
-        # Even if the schema has errors, the data produced by `to_h` will
+        it { expect(result.output).to match(id: uuid) }
+        # Even if the schema has errors, the data produced by `to_h` or `output`  will
         # include the "wrong" fields and their values are *not* `nil` either.
       end
 
@@ -56,7 +56,7 @@ RSpec.shared_examples 'an schema based on BaseModel' do |class_name|
 
         it { expect(result).to be_failure }
         it { expect(result.errors.to_h).to match(id: ['must be filled']) }
-        it { expect(result.to_h).to match(id: uuid) }
+        it { expect(result.output).to match(id: uuid) }
       end
 
       context 'when having an empty payload' do
@@ -66,7 +66,7 @@ RSpec.shared_examples 'an schema based on BaseModel' do |class_name|
 
         it { expect(result).to be_failure }
         it { expect(result.errors.to_h).to match(id: ['is missing']) }
-        it { expect(result.to_h).to match({}) }
+        it { expect(result.output).to match({}) }
       end
 
       context 'when having extra keys, they will be ignored' do
@@ -76,7 +76,7 @@ RSpec.shared_examples 'an schema based on BaseModel' do |class_name|
 
         it { expect(result).to be_failure }
         it { expect(result.errors.to_h).to match(id: ['is missing']) }
-        it { expect(result.to_h).to match({}) }
+        it { expect(result.output).to match({}) }
       end
     end
   end
