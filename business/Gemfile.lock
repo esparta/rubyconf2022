@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    business (0.3.0)
+    business (0.4.0)
       dry-monads (~> 1.3)
       dry-schema (~> 1.13)
 
