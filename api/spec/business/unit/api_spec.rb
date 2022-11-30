@@ -30,6 +30,41 @@ RSpec.describe Business::Api do
       end
     end
 
+    # rubocop:disable RSpec/MultipleMemoizedHelpers
+    context 'when using an UUID & parameters (Success)' do
+      let(:request) do
+        {
+          'PATH_INFO' => path,
+          'REQUEST_METHOD' => request_method,
+          'QUERY_STRING' => query_string
+        }
+      end
+      let(:query_string) do
+        "localDateStart=#{date_start_as_string}&localDateEnd=#{date_end_as_string}"
+      end
+      let(:date_start_as_string) { '2022-11-29' }
+      let(:date_end_as_string) { '2022-12-01' }
+      let(:date_start_as_unix) do
+        Date.parse(date_start_as_string).strftime('%s')
+      end
+      let(:date_end_as_unix) do
+        Date.parse(date_end_as_string).strftime('%s')
+      end
+
+      let(:id) { SecureRandom.uuid }
+
+      it do
+        hash = {
+          id: id,
+          date_start: date_start_as_unix,
+          date_end: date_end_as_unix
+        }
+        body = [hash.to_json]
+        expect(api).to match([200, content_type, body])
+      end
+    end
+    # rubocop:enable RSpec/MultipleMemoizedHelpers
+
     context 'when not using an UUID (Failure)' do
       let(:id) { SecureRandom.random_number(100) }
 
