@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = 'business-api'
-  spec.version = '0.1.0'
+  spec.version = '0.2.0'
   spec.authors = ['esparta']
   spec.email = ['rubyconf2022.demo@esparta.co']
 
